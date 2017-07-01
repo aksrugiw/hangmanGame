@@ -1,0 +1,8 @@
+<div class="letter-card" *ngFor="let item of okLetters">{{ item }}</div>
+<p>Missed hits: <span *ngFor="let item of missLetters">{{item}}, </span></p>
+
+<br><br>
+<div class="hangman">
+<span *ngFor="let part of hangmanParts; let i = index"><img class="hangman-{{ i+1 }}" src="{{ part }}" alt=""></span>
+	
+</div>
