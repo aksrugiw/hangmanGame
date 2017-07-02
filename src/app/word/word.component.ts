@@ -28,6 +28,9 @@ export class WordComponent implements OnInit {
 			this.word = res.word.toLowerCase();
 			this.prepareGame();
 			console.log(this.word);
+		},
+		err => {
+			alert('Something wen\'t wrong. Please reload game.')
 		});
 	}
 
