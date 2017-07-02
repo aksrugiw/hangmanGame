@@ -7,23 +7,12 @@
 	<div class="game-container">
 		<div class="gameboard">
 			<div class="missed-letters">
-			<p class="missed">You missed:</p>
-			<div class="missed-list" *ngFor="let item of missLetters">{{item}}</div>
+				<p class="missed">You missed:</p>
+				<div class="missed-list" *ngFor="let item of missLetters">{{item}}</div>
 				
 			</div>
-
-
-			<div class="hangman">
-			<img class="bar" src="https://raw.githubusercontent.com/netguru/frontend-recruitment-task/master/imgs/bar.png">
-
-			<ul class="man">
-			  <li *ngFor="let part of hangmanParts" class="{{part}}">
-			  	<img src="https://raw.githubusercontent.com/netguru/frontend-recruitment-task/master/imgs/{{ part }}.png" alt="">
-			  </li>
-			</ul>
-				
-			</div>
-
+			
+			<hangman [failHits]="missLetters.length"></hangman>
 
 			<div class="letter-pad">
 				<ul class="ok-letter-pad">

@@ -4,12 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { WordComponent } from './word/word.component';
+import { GameComponent } from './game/game.component';
+import { HangmanComponent } from './hangman/hangman.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WordComponent
+    GameComponent,
+    HangmanComponent
   ],
   imports: [
     BrowserModule,

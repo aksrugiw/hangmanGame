@@ -1,0 +1,78 @@
+img.bar {
+	width: 30%;
+	margin-left: -117px;
+	margin-top: 20px;
+}
+
+
+ul li img {
+	display: block;
+}
+.hangman {
+	position: relative;
+	min-height: 350px;
+}
+
+.hangman li {
+	position: absolute;
+}
+
+
+.hangman li > img {
+	width: 50%;
+}
+
+.head {
+	top: 55px;
+	left: 51px;
+	z-index: 2;
+}
+.neck {
+	top: 140px;
+	left: 88px;
+}
+.corpus {
+	top: 169px;
+	left: 73px;
+	z-index: 4;
+}
+.right-arm {
+	top: 171px;
+	left: 106px;
+	z-index: 3;
+}
+.right-hand {
+	top: 220px;
+	left: 157px;
+	z-index: 2;
+}
+.left-arm {
+	top: 169px;
+	left: 32px;
+	z-index: 3;
+}
+.left-hand {
+	top: 219px;
+	left: 29px;
+	z-index: 2;
+}
+.left-leg {
+	top: 243px;
+	left: 57px;
+	z-index: 3;
+}
+.right-leg {
+	top: 242px;
+	left: 101px;
+	z-index: 3;
+}
+.left-foot {
+	top: 321px;
+	left: 37px;
+	z-index: 2;
+}
+.right-foot {
+	top: 321px;
+	left: 119px;
+	z-index: 2;
+}

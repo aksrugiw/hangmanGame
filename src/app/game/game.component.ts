@@ -2,19 +2,17 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { WordService } from './word.service';
 
 @Component({
-	selector: 'word',
-	templateUrl: './word.component.html',
-	styleUrls: ['./word.component.scss'],
+	selector: 'game',
+	templateUrl: './game.component.html',
+	styleUrls: ['./game.component.scss'],
 	providers: [WordService]
 })
-export class WordComponent implements OnInit {
+export class GameComponent implements OnInit {
 	private word = '';
 	private letters = [];
 	private missLetters = [];
 	private okLetters = [];
 	private okLettersNumber = 0;
-	private hangmanParts = [];
-	private bodyParts = [];
 	private emptyLetters = [];
 	private isGameEnd = false;
 	private isGameOver = false;
@@ -27,6 +25,7 @@ export class WordComponent implements OnInit {
 		.subscribe(res => {
 			this.word = res.word.toLowerCase();
 			this.prepareGame();
+			console.log(this.word);
 		},
 		err => {
 			alert('Something wen\'t wrong. Please reload game.')
@@ -62,19 +61,6 @@ export class WordComponent implements OnInit {
 
 			this.okLetters.push('_');
 		}
-		this.bodyParts = [
-		'head',
-		'neck',
-		'corpus',
-		'right-arm',
-		'left-arm',
-		'right-hand',
-		'left-hand',
-		'right-leg',
-		'left-leg',
-		'right-foot',
-		'left-foot',
-		];
 
 	}
 
@@ -105,7 +91,6 @@ export class WordComponent implements OnInit {
 
 	setIncorrectAnswer(letter) {
 		if(this.missLetters.indexOf(letter.toUpperCase()) === -1) {
-			this.renderHangman();
 			this.missLetters.push(letter.toUpperCase());
 		}
 
@@ -115,17 +100,11 @@ export class WordComponent implements OnInit {
 		}
 	}
 
-	renderHangman() {
-		let i = this.missLetters.length;
-		this.hangmanParts.push(this.bodyParts[i]);
-	}
-
 	resetGame() {
 		this.okLetters = [];
 		this.emptyLetters = [];
 		this.letters = [];
 		this.missLetters = [];
-		this.hangmanParts = [];
 		this.okLettersNumber = 0;
 		this.isGameEnd = false;
 		this.isGameOver = false;

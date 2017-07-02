@@ -1,0 +1,10 @@
+<div class="hangman">
+	<img class="bar" src="assets/imgs/bar.png">
+
+	<ul class="man">
+		<li *ngFor="let part of hangmanParts" class="{{part}}">
+			<img src="assets/imgs/{{ part }}.png" alt="">
+		</li>
+	</ul>
+	
+</div>
