@@ -16,6 +16,9 @@ export class WordComponent implements OnInit {
 	private hangmanParts = [];
 	private bodyParts = [];
 	private emptyLetters = [];
+	 isGameEnd = false;
+	 isGameOver = false;
+	 isGameWin = false;
 
 	constructor(private _wordService: WordService) { }
 
@@ -84,8 +87,10 @@ export class WordComponent implements OnInit {
 			}
 		}
 
-		if (this.okLettersNumber === this.word.length)
-			alert('you win');
+		if (this.okLettersNumber === this.word.length) {
+			this.isGameEnd = true;
+			this.isGameWin = true;
+		}
 	}
 
 	setIncorrectAnswer(letter) {
@@ -94,13 +99,38 @@ export class WordComponent implements OnInit {
 			this.missLetters.push(letter.toUpperCase());
 		}
 
-		if (this.missLetters.length > 10)
-			alert('you lose :(, correct answer is: ' + this.word);
+		if (this.missLetters.length > 10) {
+			this.isGameEnd = true;
+			this.isGameOver = true;
+		}
 	}
 
 	renderHangman() {
 		let i = this.missLetters.length;
 		this.hangmanParts.push(this.bodyParts[i]);
+	}
+
+	resetGame() {
+		this.okLetters = [];
+		this.emptyLetters = [];
+		this.letters = [];
+		this.missLetters = [];
+		this.hangmanParts = [];
+		this.okLettersNumber = 0;
+		this.isGameEnd = false;
+		this.isGameOver = false;
+		this.isGameWin = false;
+	}
+
+	newGame() {
+		this.resetGame();
+		this._wordService.getRandomWord()
+		.subscribe(res => {
+			this.word = res.word.toLowerCase();
+			this.prepareGame();
+			console.log(this.word);
+		});
+		console.log(this.okLetters);
 	}
 
 
