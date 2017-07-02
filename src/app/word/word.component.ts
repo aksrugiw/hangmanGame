@@ -16,9 +16,9 @@ export class WordComponent implements OnInit {
 	private hangmanParts = [];
 	private bodyParts = [];
 	private emptyLetters = [];
-	 isGameEnd = false;
-	 isGameOver = false;
-	 isGameWin = false;
+	private isGameEnd = false;
+	private isGameOver = false;
+	private isGameWin = false;
 
 	constructor(private _wordService: WordService) { }
 
@@ -27,7 +27,6 @@ export class WordComponent implements OnInit {
 		.subscribe(res => {
 			this.word = res.word.toLowerCase();
 			this.prepareGame();
-			console.log(this.word);
 		},
 		err => {
 			alert('Something wen\'t wrong. Please reload game.')
@@ -67,9 +66,6 @@ export class WordComponent implements OnInit {
 		'right-foot',
 		'left-foot',
 		];
-
-		// this.hangmanParts = this.bodyParts;
-		// this.missLetters = ['b', 'a', 'q'];
 
 	}
 
@@ -134,8 +130,10 @@ export class WordComponent implements OnInit {
 			this.word = res.word.toLowerCase();
 			this.prepareGame();
 			console.log(this.word);
+		},
+		err => {
+			alert('Something wen\'t wrong. Please reload game.')
 		});
-		console.log(this.okLetters);
 	}
 
 
