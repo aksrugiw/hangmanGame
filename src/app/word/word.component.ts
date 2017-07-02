@@ -15,6 +15,7 @@ export class WordComponent implements OnInit {
 	private okLettersNumber = 0;
 	private hangmanParts = [];
 	private bodyParts = [];
+	private emptyLetters = [];
 
 	constructor(private _wordService: WordService) { }
 
@@ -23,6 +24,7 @@ export class WordComponent implements OnInit {
 		.subscribe(res => {
 			this.word = res.word.toLowerCase();
 			this.prepareGame();
+			console.log(this.word);
 		});
 	}
 
@@ -30,32 +32,37 @@ export class WordComponent implements OnInit {
 	handleKeyboardEvent(event: KeyboardEvent) { 
 		let pressedKey = event.key;
 		
-		
 		this.checkGuess(pressedKey);
 	}
 
 	prepareGame() {
+		this.emptyLetters = Array(11 - this.word.length);
+
 		for(let i = 0; i < this.word.length; i++) {
 			if (this.letters[this.word[i]])
 				this.letters[this.word[i]].push(i);
 			else
 				this.letters[this.word[i]] = [i];
 
-			this.okLetters.push('');
+			this.okLetters.push('_');
 		}
 		this.bodyParts = [
-		'https://raw.githubusercontent.com/netguru/frontend-recruitment-task/master/imgs/head.png',
-		'https://raw.githubusercontent.com/netguru/frontend-recruitment-task/master/imgs/neck.png',
-		'https://raw.githubusercontent.com/netguru/frontend-recruitment-task/master/imgs/corpus.png',
-		'https://raw.githubusercontent.com/netguru/frontend-recruitment-task/master/imgs/right-arm.png',
-		'https://raw.githubusercontent.com/netguru/frontend-recruitment-task/master/imgs/left-arm.png',
-		'https://raw.githubusercontent.com/netguru/frontend-recruitment-task/master/imgs/right-hand.png',
-		'https://raw.githubusercontent.com/netguru/frontend-recruitment-task/master/imgs/left-hand.png',
-		'https://raw.githubusercontent.com/netguru/frontend-recruitment-task/master/imgs/right-leg.png',
-		'https://raw.githubusercontent.com/netguru/frontend-recruitment-task/master/imgs/left-leg.png',
-		'https://raw.githubusercontent.com/netguru/frontend-recruitment-task/master/imgs/right-foot.png',
-		'https://raw.githubusercontent.com/netguru/frontend-recruitment-task/master/imgs/left-foot.png',
+		'head',
+		'neck',
+		'corpus',
+		'right-arm',
+		'left-arm',
+		'right-hand',
+		'left-hand',
+		'right-leg',
+		'left-leg',
+		'right-foot',
+		'left-foot',
 		];
+
+		// this.hangmanParts = this.bodyParts;
+		// this.missLetters = ['b', 'a', 'q'];
+
 	}
 
 	checkGuess(letter) {
