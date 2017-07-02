@@ -33,6 +33,8 @@ export class WordComponent implements OnInit {
 
 	@HostListener('document:keypress', ['$event'])
 	handleKeyboardEvent(event: KeyboardEvent) { 
+		if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122))
+			return;
 		let pressedKey = event.key;
 		
 		this.checkGuess(pressedKey);
