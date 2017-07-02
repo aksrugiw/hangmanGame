@@ -35,21 +35,30 @@ export class WordComponent implements OnInit {
 
 	@HostListener('document:keypress', ['$event'])
 	handleKeyboardEvent(event: KeyboardEvent) { 
-		if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122))
-			return;
+		let code = event.keyCode;
+
+		if ((code > 64 && code < 91)
+			|| (code > 96 && code < 123)
+			|| code === 32 
+			|| code === 45)
+		{
 		let pressedKey = event.key;
-		
 		this.checkGuess(pressedKey);
+
+		}
+		
 	}
 
 	prepareGame() {
 		this.emptyLetters = Array(11 - this.word.length);
 
 		for(let i = 0; i < this.word.length; i++) {
-			if (this.letters[this.word[i]])
+			if (this.letters[this.word[i]]) {
 				this.letters[this.word[i]].push(i);
-			else
+			}
+			else {
 				this.letters[this.word[i]] = [i];
+			}
 
 			this.okLetters.push('_');
 		}
